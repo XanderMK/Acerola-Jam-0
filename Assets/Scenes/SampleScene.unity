@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18029127, g: 0.22572401, b: 0.3069303, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -200,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 132900531}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.625, y: 1.175, z: 0.075}
+  m_LocalPosition: {x: 0.625, y: 1.175, z: -0.075}
   m_LocalScale: {x: 1.25, y: 2.35, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -258,7 +258,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.25, y: 2.35, z: 0.15}
-  m_Center: {x: 0.625, y: 1.175, z: 0.075}
+  m_Center: {x: 0.625, y: 1.175, z: -0.075}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,8 +317,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.015
+  far clip plane: 500
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -783,6 +783,7 @@ GameObject:
   - component: {fileID: 1490654214}
   - component: {fileID: 1490654215}
   - component: {fileID: 1490654217}
+  - component: {fileID: 1490654218}
   m_Layer: 0
   m_Name: Door
   m_TagString: Interactable
@@ -819,10 +820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de38f6cf8d217480086f3b25dea876d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closedRotation: 0
-  maxRotation: -100
-  currentRotation: 0
-  moveForce: 100
+  moveForce: 25
 --- !u!54 &1490654217
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -831,7 +829,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490654213}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 45
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -850,6 +848,45 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 94
   m_CollisionDetection: 0
+--- !u!59 &1490654218
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490654213}
+  m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 1, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0, y: 0, z: 3.21}
+  serializedVersion: 2
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 1
+  m_ExtendedLimits: 0
+  m_UseAcceleration: 0
+  m_Limits:
+    min: -110
+    max: 0
+    bounciness: 0.15
+    bounceMinVelocity: 0.2
+    contactDistance: 12
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1517002103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +1049,7 @@ MonoBehaviour:
   input: {fileID: 11400000, guid: 880228759bd55a79dad152ab7a8a13b3, type: 2}
   walkSpeed: 3
   runSpeed: 5
+  acceleration: 8
   groundCastPoint: {fileID: 2145445001}
   maxGroundCastDistance: 0.2
   groundCastMask:

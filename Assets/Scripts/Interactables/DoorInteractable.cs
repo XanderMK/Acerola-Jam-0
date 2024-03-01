@@ -1,41 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DoorInteractable : Interactable
 {
-    [SerializeField] private float closedRotation, maxRotation;
-    [SerializeField] private float currentRotation;
-    [Space(10f)]
     [SerializeField] private float moveForce;
     
     private Vector3 currentLocalInteractionPoint;
     private float currentInteractionDistance;
 
     private Rigidbody rb;
+    private HingeJoint hingeJoint;
     private Transform playerCam;
 
-    private bool isBeingInteracted = false;
-    private bool isOpen = false;
+    public event UnityAction openEvent = delegate {};
+    public event UnityAction closeEvent = delegate {};
+    public event UnityAction moveEvent = delegate {};
+
+    bool isBeingInteractedWith = false;
+    bool openDirection;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
+        hingeJoint = GetComponent<HingeJoint>();
         playerCam = Camera.main.transform;
 
-        isOpen = !Mathf.Approximately(currentRotation, closedRotation);
+        openDirection = hingeJoint.limits.min < 0f; // true is counterclockwise, false is clockwise
     }
 
     private void FixedUpdate() {
-        if (transform.localEulerAngles.y > closedRotation && !isBeingInteracted) {
-            rb.velocity = Vector3.zero;
+        if (((hingeJoint.angle >= -0.05f && openDirection) || (hingeJoint.angle <= 0.05f && !openDirection)) && !isBeingInteractedWith) {
             rb.isKinematic = true;
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, closedRotation, transform.localEulerAngles.z);
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 0f, transform.localEulerAngles.z);
         }
-        else if (transform.localEulerAngles.y < maxRotation) {
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, maxRotation, transform.localEulerAngles.z);
-            rb.angularVelocity = new Vector3(rb.angularVelocity.x, rb.angularVelocity.y * -0.333f, rb.angularVelocity.z);
+        else {
+            rb.isKinematic = false;
         }
-
     }
 
     public override void Interact()
@@ -46,7 +47,7 @@ public class DoorInteractable : Interactable
         currentLocalInteractionPoint = transform.InverseTransformPoint(hit.point);
         currentInteractionDistance = Vector3.Distance(hit.point, playerCam.position);
 
-        isBeingInteracted = true;
+        isBeingInteractedWith = true;
 
         StartCoroutine(MoveDoor());
     }
@@ -54,15 +55,12 @@ public class DoorInteractable : Interactable
     public override void StopInteract()
     {
         StopAllCoroutines();
-        isBeingInteracted = false;
+
+        isBeingInteractedWith = false;
     }
 
     private IEnumerator MoveDoor() {
         while (true) {
-            if (rb.isKinematic) {
-                rb.isKinematic = false;
-            }
-
             Vector3 targetPoint = playerCam.position + playerCam.forward * currentInteractionDistance;
 
             Vector3 worldSpaceInteractionPoint = transform.TransformPoint(currentLocalInteractionPoint);

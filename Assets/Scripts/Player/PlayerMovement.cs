@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
+    [SerializeField] private float acceleration;
     [Space(10f)]
     [SerializeField] private Transform groundCastPoint;
     [SerializeField] private float maxGroundCastDistance;
@@ -49,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
         currentMoveSpeed = walkSpeed;
     }
 
+    Vector3 currentAccel;
     private void FixedUpdate() {
         float rbVelocityY = rb.velocity.y;
 
@@ -68,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         if (rbVelocityY < 0f)
             moveDirection.y += rbVelocityY;
 
-        rb.velocity = moveDirection;
+        rb.AddForce((moveDirection - rb.velocity) * acceleration, ForceMode.Acceleration);
     }
 
     private void Update() {
