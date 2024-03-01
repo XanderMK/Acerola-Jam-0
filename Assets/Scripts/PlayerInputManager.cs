@@ -43,8 +43,7 @@ public class PlayerInputManager : ScriptableObject, PlayerInput.IPlayerActions
             // Make delta independent of screen size
             Vector2 value = context.ReadValue<Vector2>();
 
-            value.x /= Screen.width;
-            value.y /= Screen.height;
+            value /= Screen.height;
 
             // Value is really small, so multiply by large value
             value *= 1080f;

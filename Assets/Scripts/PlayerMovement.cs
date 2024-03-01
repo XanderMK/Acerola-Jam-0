@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -7,14 +8,20 @@ public class PlayerMovement : MonoBehaviour
 {
     // Inspector Values
     [SerializeField] private PlayerInputManager input;
-    [Space(10f)]
+    [Space(20f)]
+    [Header("Movement")]
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [Space(10f)]
+    [SerializeField] private Transform groundCastPoint;
+    [SerializeField] private float maxGroundCastDistance;
+    [SerializeField] private LayerMask groundCastMask;
+    [Space(20f)]
     [SerializeField] private float mouseSensitivity;
 
     // Local Components
     private Rigidbody rb;
+    private CapsuleCollider col;
     private new Transform camera;
 
     // Local Variables
@@ -34,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
+        col = GetComponentInChildren<CapsuleCollider>();
         camera = Camera.main.transform;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -42,8 +50,25 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        rb.velocity = transform.forward * moveInput.y * currentMoveSpeed +
-                      transform.right * moveInput.x * currentMoveSpeed;
+        float rbVelocityY = rb.velocity.y;
+
+        Vector3 moveDirection = transform.forward * moveInput.y * currentMoveSpeed +
+                                transform.right * moveInput.x * currentMoveSpeed;
+
+        GroundData groundData = GetGroundData();
+
+        // Turn gravity off if already on the ground
+        if (groundData.hitGround)
+            rb.useGravity = false;
+        else
+            rb.useGravity = true;
+
+        // Move along the ground
+        moveDirection = Vector3.ProjectOnPlane(moveDirection, groundData.hitInfo.normal);
+        if (rbVelocityY < 0f)
+            moveDirection.y += rbVelocityY;
+
+        rb.velocity = moveDirection;
     }
 
     private void Update() {
@@ -54,6 +79,26 @@ public class PlayerMovement : MonoBehaviour
 
         transform.localEulerAngles = Vector3.up * lookRotationY;
         camera.localEulerAngles = Vector3.right * lookRotationX;
+    }
+
+    private struct GroundData {
+        public GroundData(bool hitGround, RaycastHit hitInfo) {
+            this.hitGround = hitGround;
+            this.hitInfo = hitInfo;
+        }
+        
+        public bool hitGround;
+        public RaycastHit hitInfo;
+    };
+
+    private GroundData GetGroundData() {
+        bool hasHit;
+        RaycastHit hit;
+
+        // Cast a sphere slightly smaller than the player to get ground data
+        hasHit = Physics.SphereCast(groundCastPoint.position, col.radius - 0.01f, Vector3.down, out hit, maxGroundCastDistance);
+
+        return new GroundData(hasHit, hit);
     }
 
 
