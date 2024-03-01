@@ -13,6 +13,7 @@ public class PlayerInputManager : ScriptableObject, PlayerInput.IPlayerActions
     public event UnityAction stopRunEvent = delegate{};
 
     public event UnityAction interactEvent = delegate {};
+    public event UnityAction stopInteractEvent = delegate {};
 
     private PlayerInput playerInput;
 
@@ -67,6 +68,9 @@ public class PlayerInputManager : ScriptableObject, PlayerInput.IPlayerActions
     public void OnInteract(InputAction.CallbackContext context) {
         if (context.performed) {
             interactEvent.Invoke();
+        }
+        else if (context.canceled) {
+            stopInteractEvent.Invoke();
         }
     }
 
