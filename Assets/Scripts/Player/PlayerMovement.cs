@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start() {
         rb = GetComponent<Rigidbody>();
         col = GetComponentInChildren<CapsuleCollider>();
-        camera = Camera.main.transform;
+        camera = Camera.main.transform.parent;
 
         Cursor.lockState = CursorLockMode.Locked;
 

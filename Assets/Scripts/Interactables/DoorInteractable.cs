@@ -5,69 +5,61 @@ using UnityEngine.Events;
 
 public class DoorInteractable : Interactable
 {
-    [SerializeField] private float moveForce;
-    
-    private Vector3 currentLocalInteractionPoint;
-    private float currentInteractionDistance;
-
-    private Rigidbody rb;
-    private HingeJoint hingeJoint;
-    private Transform playerCam;
+    [SerializeField] private Transform door;
+    [Space(10f)]
+    [SerializeField] private float closedRotation, openRotation;
+    [SerializeField] private bool isOpen;
+    [Space(10f)]
+    [SerializeField] private float doorMoveTime;
+    [Space(10f)]
+    [SerializeField] private bool isLocked;
 
     public event UnityAction openEvent = delegate {};
     public event UnityAction closeEvent = delegate {};
-    public event UnityAction moveEvent = delegate {};
 
-    bool isBeingInteractedWith = false;
-    bool openDirection;
+    private Rigidbody rb;
+    private bool playerInside = false;
 
     private void Start() {
-        rb = GetComponent<Rigidbody>();
-        hingeJoint = GetComponent<HingeJoint>();
-        playerCam = Camera.main.transform;
-
-        openDirection = hingeJoint.limits.min < 0f; // true is counterclockwise, false is clockwise
+        rb = GetComponentInChildren<Rigidbody>();
     }
 
-    private void FixedUpdate() {
-        if (((hingeJoint.angle >= -0.05f && openDirection) || (hingeJoint.angle <= 0.05f && !openDirection)) && !isBeingInteractedWith) {
-            rb.isKinematic = true;
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 0f, transform.localEulerAngles.z);
-        }
-        else {
-            rb.isKinematic = false;
-        }
-    }
+    public override void Interact() {
+        if (isLocked || playerInside) return;
 
-    public override void Interact()
-    {
-        RaycastHit hit;
-        Physics.Raycast(playerCam.position, playerCam.forward, out hit);
+        isOpen = !isOpen;
 
-        currentLocalInteractionPoint = transform.InverseTransformPoint(hit.point);
-        currentInteractionDistance = Vector3.Distance(hit.point, playerCam.position);
-
-        isBeingInteractedWith = true;
-
-        StartCoroutine(MoveDoor());
-    }
-
-    public override void StopInteract()
-    {
         StopAllCoroutines();
-
-        isBeingInteractedWith = false;
+        StartCoroutine(RotateTo((isOpen ? openRotation : closedRotation)));
+        currentVelocity = 0f;
     }
 
-    private IEnumerator MoveDoor() {
-        while (true) {
-            Vector3 targetPoint = playerCam.position + playerCam.forward * currentInteractionDistance;
+    public override void StopInteract() {}
 
-            Vector3 worldSpaceInteractionPoint = transform.TransformPoint(currentLocalInteractionPoint);
+    public void SetLocked(bool value) {
+        isLocked = value;
+    }
 
-            rb.AddForceAtPosition(moveForce * (targetPoint - worldSpaceInteractionPoint), worldSpaceInteractionPoint);
+    float currentVelocity;
+    private IEnumerator RotateTo(float yRot) {
+        while ((int)Mathf.Abs(yRot - door.transform.localEulerAngles.y) % 360 > 0.15f) {
+            Vector3 newRotation = Vector3.up * Mathf.SmoothDampAngle(door.localEulerAngles.y, yRot, ref currentVelocity, doorMoveTime);
 
-            yield return new WaitForFixedUpdate();
+            door.localEulerAngles = newRotation;
+
+            yield return null;
+        }
+    }
+
+    private void OnTriggerEnter(Collider collider) {
+        if (collider.CompareTag("Player")) {
+            playerInside = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider collider) {
+        if (collider.CompareTag("Player")) {
+            playerInside = false;
         }
     }
 }

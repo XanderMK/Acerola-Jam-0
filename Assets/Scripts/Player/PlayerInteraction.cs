@@ -1,5 +1,5 @@
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -8,9 +8,19 @@ public class PlayerInteraction : MonoBehaviour
     [Header("Detection")]
     [SerializeField] private Transform interactableCastTransform;
     [SerializeField] private float maxInteractableDistance;
+    [SerializeField] private LayerMask interactionMask;
     [Header("Interaction Handling")]
     private GameObject currentlyHeldItem;
     private Interactable currentlyInteractedObject;
+
+    public bool IsHoveringOverInteractable {
+        get {
+            if (Physics.Raycast(interactableCastTransform.position, interactableCastTransform.forward, out RaycastHit hit, maxInteractableDistance, interactionMask)) {
+                return (hit.transform.GetComponentInParent<Interactable>() != null);
+            }
+            return false;
+        }
+    }
 
     private Rigidbody rb;
 
@@ -40,7 +50,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void InteractSubscriber() {
         RaycastHit hit;
-        if (Physics.Raycast(interactableCastTransform.position, interactableCastTransform.forward, out hit, maxInteractableDistance)) {
+        if (Physics.Raycast(interactableCastTransform.position, interactableCastTransform.forward, out hit, maxInteractableDistance, interactionMask)) {
             Interactable interactable = hit.transform.GetComponentInParent<Interactable>();
             if (interactable != null) {
                 interactable.Interact();
