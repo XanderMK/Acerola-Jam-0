@@ -11,12 +11,13 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private LayerMask interactionMask;
     [Header("Interaction Handling")]
     private GameObject currentlyHeldItem;
+    private Interactable currentlyInteractable;
     private Interactable currentlyInteractedObject;
 
     public bool IsHoveringOverInteractable {
         get {
-            if (Physics.Raycast(interactableCastTransform.position, interactableCastTransform.forward, out RaycastHit hit, maxInteractableDistance, interactionMask)) {
-                return (hit.transform.GetComponentInParent<Interactable>() != null);
+            if (currentlyInteractable != null) {
+                return (currentlyInteractable.CanBeInteractedWith);
             }
             return false;
         }
@@ -38,6 +39,10 @@ public class PlayerInteraction : MonoBehaviour
         rb.centerOfMass = Vector3.zero;
     }
 
+    private void FixedUpdate() {
+        currentlyInteractable = GetCurrentlyInteractable();
+    }
+
     private void SetInputCallbacks() {
         input.interactEvent += InteractSubscriber;
         input.stopInteractEvent += StopInteractSubscriber;
@@ -49,15 +54,10 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     private void InteractSubscriber() {
-        RaycastHit hit;
-        if (Physics.Raycast(interactableCastTransform.position, interactableCastTransform.forward, out hit, maxInteractableDistance, interactionMask)) {
-            Interactable interactable = hit.transform.GetComponentInParent<Interactable>();
-            if (interactable != null) {
-                interactable.Interact();
-                currentlyInteractedObject = interactable;
-            }
+        if (currentlyInteractable != null) {
+            currentlyInteractable.Interact();
+            currentlyInteractedObject = currentlyInteractable;
         }
-        Debug.DrawLine(interactableCastTransform.position, interactableCastTransform.position + interactableCastTransform.forward * maxInteractableDistance);
     }
 
     private void StopInteractSubscriber() {
@@ -66,5 +66,15 @@ public class PlayerInteraction : MonoBehaviour
 
             currentlyInteractedObject = null;
         }
+    }
+
+    private Interactable GetCurrentlyInteractable() {
+        RaycastHit hit;
+        if (Physics.Raycast(interactableCastTransform.position, interactableCastTransform.forward, out hit, maxInteractableDistance, interactionMask)) {
+            Interactable interactable = hit.transform.GetComponentInParent<Interactable>();
+
+            return interactable;
+        }
+        return null;
     }
 }

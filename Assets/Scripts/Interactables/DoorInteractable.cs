@@ -13,19 +13,29 @@ public class DoorInteractable : Interactable
     [SerializeField] private float doorMoveTime;
     [Space(10f)]
     [SerializeField] private bool isLocked;
+    [SerializeField] private string textOnOpenWhenLocked;
+    [SerializeField] private float fadeInTime, stayTime, fadeOutTime;
 
     public event UnityAction openEvent = delegate {};
     public event UnityAction closeEvent = delegate {};
 
     private Rigidbody rb;
+    private Animation anim;
     private bool playerInside = false;
 
     private void Start() {
         rb = GetComponentInChildren<Rigidbody>();
+        anim = GetComponent<Animation>();
     }
 
     public override void Interact() {
-        if (isLocked || playerInside) return;
+        if (playerInside) return;
+
+        if (isLocked) {
+            HUD.Instance.SetText(textOnOpenWhenLocked, fadeInTime, stayTime, fadeOutTime);
+            anim.Play();
+            return;
+        }
 
         isOpen = !isOpen;
 
@@ -52,13 +62,13 @@ public class DoorInteractable : Interactable
     }
 
     private void OnTriggerEnter(Collider collider) {
-        if (collider.CompareTag("Player")) {
+        if (collider.transform.root.CompareTag("Player")) {
             playerInside = true;
         }
     }
 
     private void OnTriggerExit(Collider collider) {
-        if (collider.CompareTag("Player")) {
+        if (collider.transform.root.CompareTag("Player")) {
             playerInside = false;
         }
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3910861615753846081}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,9 +44,10 @@ GameObject:
   - component: {fileID: 449108438768374883}
   - component: {fileID: 6732633964598851412}
   - component: {fileID: 3218053121794397177}
+  - component: {fileID: 1697922332962728149}
   m_Layer: 0
   m_Name: Door Container
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,15 +60,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869924666507821584}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.145, y: 0, z: -3.85}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3910861615753846081}
   - {fileID: 3166683773077990928}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6732633964598851412
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -92,7 +93,7 @@ Rigidbody:
   m_ImplicitTensor: 0
   m_UseGravity: 0
   m_IsKinematic: 1
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &3218053121794397177
@@ -112,6 +113,27 @@ MonoBehaviour:
   openRotation: -110
   isOpen: 0
   doorMoveTime: 0.25
+  isLocked: 0
+  textOnOpenWhenLocked: The door is locked.
+  fadeInTime: 0.3
+  stayTime: 2
+  fadeOutTime: 0.2
+--- !u!111 &1697922332962728149
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869924666507821584}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: baaf1de2d5183a432a7344395c9a3563, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: baaf1de2d5183a432a7344395c9a3563, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &8396826248481340529
 GameObject:
   m_ObjectHideFlags: 0
