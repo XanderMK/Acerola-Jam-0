@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         currentMoveSpeed = walkSpeed;
+        lookRotationY = transform.localEulerAngles.y;
     }
 
     Vector3 currentAccel;

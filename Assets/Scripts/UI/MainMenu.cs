@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
         camera.DOMoveY(startYPosition, startTransitionTime).SetEase(Ease.InCubic).OnComplete( () => { 
             SceneManager.LoadScene(1);
         } );
+        transitionImage.DOColor(transitionImageInitialColor, transitionImageFadeInTime+2.5f).SetEase(Ease.InCubic);
     }
 
     public void OnOptions() {

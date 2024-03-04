@@ -6,11 +6,16 @@ using DG.Tweening;
 
 public class HUD : MonoBehaviour
 {
+    [SerializeField] private Image transitionImage;
+    [SerializeField] private float transitionImageFadeInTime, transitionImageFadeOutTime;
+    [Space(10f)]
     [SerializeField] private GameObject crosshair;
     [Space(10f)]
     [SerializeField] private TMP_Text text;
 
     private PlayerInteraction playerInteraction;
+
+    private Color transitionImageInitialColor;
 
     public static HUD Instance;
 
@@ -23,9 +28,13 @@ public class HUD : MonoBehaviour
         }
     }
 
-    void Start() {
+    IEnumerator Start() {
         playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>();
-        Debug.Log(playerInteraction);
+
+        yield return new WaitForSeconds(1f);
+
+        transitionImageInitialColor = transitionImage.color;
+        transitionImage.DOColor(Color.clear, transitionImageFadeOutTime);
     }
 
     void FixedUpdate() {
@@ -46,5 +55,15 @@ public class HUD : MonoBehaviour
         text.DOColor(Color.white, fadeInTime);
         yield return new WaitForSeconds(fadeInTime + stayTime);
         text.DOColor(Color.clear, fadeOutTime);
+    }
+
+    public void TransitionIn() {
+        transitionImage.DOKill();
+        transitionImage.DOColor(Color.clear, transitionImageFadeOutTime);
+    }
+
+    public void TransitionOut() {
+        transitionImage.DOKill();
+        transitionImage.DOColor(transitionImageInitialColor, transitionImageFadeOutTime);
     }
 }
