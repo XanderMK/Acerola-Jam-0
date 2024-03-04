@@ -104,7 +104,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Color_Scroll_Speed_Multiplier: 0.0025
+    - _Color_Scroll_Speed_Multiplier: 0.003
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
