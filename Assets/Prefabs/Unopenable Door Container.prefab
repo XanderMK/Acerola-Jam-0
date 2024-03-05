@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBeInteractedWith: 1
-  textOnTryOpen: It isn't locked, but you can't open it.
-  playAnimation: 1
+  textOnTryOpen: You don't need to go to the bathroom.
+  playAnimation: 0
   fadeInTime: 0.5
   stayTime: 4
   fadeOutTime: 0.3
@@ -257,6 +257,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -305091885687274788, guid: e472c0b80ac99e2b69b2a85d317003a8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3eba7a395e55a784a91848cd2a86a5ad, type: 2}
     - target: {fileID: 919132149155446097, guid: e472c0b80ac99e2b69b2a85d317003a8,
         type: 3}
       propertyPath: m_Name

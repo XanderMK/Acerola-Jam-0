@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CeilingFan : MonoBehaviour
+public class CeilingFan : MonoBehaviour, IToggleable
 {
     [SerializeField] private bool isOn = false;
     [Space(10f)]
-    [SerializeField] private GameObject light;
+    [SerializeField] private new GameObject light;
     [SerializeField] private MeshRenderer mesh;
     [SerializeField] private Material lightOn, lightOff;
     [Space(10f)]
@@ -34,8 +34,8 @@ public class CeilingFan : MonoBehaviour
         mesh.material = (isOn ? lightOn : lightOff);
     }
 
-    public void SetFanOn(bool on) {
-        isOn = on;
+    public void Toggle(bool state) {
+        isOn = state;
 
         SetFanValues();
     }
