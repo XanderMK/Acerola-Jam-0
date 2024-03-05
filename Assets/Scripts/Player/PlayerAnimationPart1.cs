@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAnimationPart1 : MonoBehaviour
 {
     [SerializeField] private Part1GameStateManager gameStateManager;
+    [SerializeField] private Animator playerAnimator;
     
     public void LookAtLamp() {
         gameStateManager.PlayerLookAtLampSequence();
@@ -12,5 +13,9 @@ public class PlayerAnimationPart1 : MonoBehaviour
 
     public void EnablePlayerMovement() {
         gameStateManager.EnablePlayerMovement();
+    }
+
+    public void DisableCameraAnimator() {
+        playerAnimator.enabled = false;
     }
 }

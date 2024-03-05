@@ -7,21 +7,29 @@ public class LightswitchInteractable : Interactable
 {
     [SerializeField] private bool isOn;
 
-    [SerializeField, SerializeReference] private GameObject toggleableObject;
+    [SerializeField, SerializeReference] private GameObject[] toggleableObjects;
     [Space(10f)]
     [SerializeField] private Transform switchMesh;
     [SerializeField] private float onRotation, offRotation;
 
-    private IToggleable toggleable;
+    private List<IToggleable> toggleables = new();
 
     public event UnityAction toggleOnEvent = delegate {};
     public event UnityAction toggleOffEvent = delegate {};
 
     private void Start() {
-        toggleable = toggleableObject.GetComponent<IToggleable>();
-        if (toggleable == null) {
-            Debug.LogError(toggleableObject.name + " is not a toggleable object!");
+        foreach (GameObject toggleableObject in toggleableObjects) {
+            IToggleable toggleable = toggleableObject.GetComponent<IToggleable>();
+            if (toggleable == null) {
+                Debug.LogError(toggleableObject.name + " is not a toggleable object!");
+                continue;
+            }
+
+            toggleables.Add(toggleable);
+
+            toggleable.Toggle(isOn);
         }
+        
 
         SetState();
     }
@@ -29,7 +37,8 @@ public class LightswitchInteractable : Interactable
     public override void Interact() {
         isOn = !isOn;
 
-        toggleable.Toggle(isOn);
+        foreach (IToggleable toggleable in toggleables)
+            toggleable.Toggle(isOn);
 
         if (isOn) {
             toggleOnEvent.Invoke();

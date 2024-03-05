@@ -145,12 +145,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3eba7a395e55a784a91848cd2a86a5ad, type: 2}
+      objectReference: {fileID: 2100000, guid: 9d20f832dc6b84a89b40f93c56a4650f, type: 2}
     - target: {fileID: -1461304994638716399, guid: c4fcb505198e68fabb8e9d66cf21351b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3eba7a395e55a784a91848cd2a86a5ad, type: 2}
+      objectReference: {fileID: 2100000, guid: 9d20f832dc6b84a89b40f93c56a4650f, type: 2}
     - target: {fileID: 919132149155446097, guid: c4fcb505198e68fabb8e9d66cf21351b,
         type: 3}
       propertyPath: m_Name
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanBeInteractedWith: 1
   isOn: 1
-  ceilingFan: {fileID: 0}
+  toggleableObjects: []
   switchMesh: {fileID: 5006895999760225760}
   onRotation: 0
   offRotation: -50

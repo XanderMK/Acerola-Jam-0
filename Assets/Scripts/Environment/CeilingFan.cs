@@ -23,7 +23,7 @@ public class CeilingFan : MonoBehaviour, IToggleable
     }
 
     private void FixedUpdate() {
-        if (!isOn || Mathf.Abs(rb.angularVelocity.y) > maxAngularVelocity) return;
+        if (!isOn || rb == null || Mathf.Abs(rb.angularVelocity.y) > maxAngularVelocity) return;
 
         rb.AddTorque(Vector3.up * spinAcceleration * (spinDirection ? 1 : -1));
     }
