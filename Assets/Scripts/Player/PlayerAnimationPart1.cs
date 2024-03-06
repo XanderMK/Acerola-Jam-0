@@ -18,4 +18,10 @@ public class PlayerAnimationPart1 : MonoBehaviour
     public void DisableCameraAnimator() {
         playerAnimator.enabled = false;
     }
+
+    public void DisplayText(string textData) {
+        string[] parameters = textData.Split(":::");
+
+        HUD.Instance.SetText(parameters[0], float.Parse(parameters[1]), float.Parse(parameters[2]), float.Parse(parameters[3]));
+    }
 }
