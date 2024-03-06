@@ -16,8 +16,8 @@ public class DoorInteractable : Interactable
     [SerializeField] private string textOnOpenWhenLocked;
     [SerializeField] private float fadeInTime, stayTime, fadeOutTime;
 
-    public event UnityAction openEvent = delegate {};
-    public event UnityAction closeEvent = delegate {};
+    public UnityEvent openEvent;
+    public UnityEvent closeEvent;
 
     private Rigidbody rb;
     private Animation anim;
@@ -42,6 +42,13 @@ public class DoorInteractable : Interactable
         StopAllCoroutines();
         StartCoroutine(RotateTo((isOpen ? openRotation : closedRotation)));
         currentVelocity = 0f;
+
+        if (isOpen && openEvent != null) {
+            openEvent.Invoke();
+        }
+        else if (!isOpen && closeEvent != null) {
+            closeEvent.Invoke();
+        }
     }
 
     public override void StopInteract() {}

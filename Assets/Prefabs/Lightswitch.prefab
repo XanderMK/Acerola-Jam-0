@@ -223,13 +223,29 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3710890633215910133}
+    - targetCorrespondingSourceObject: {fileID: -516098083770646512, guid: c4fcb505198e68fabb8e9d66cf21351b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2135250158406350070}
   m_SourcePrefab: {fileID: 100100000, guid: c4fcb505198e68fabb8e9d66cf21351b, type: 3}
---- !u!4 &5006895999760225760 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4083501151425157549, guid: c4fcb505198e68fabb8e9d66cf21351b,
+--- !u!1 &360816069973593181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -516098083770646512, guid: c4fcb505198e68fabb8e9d66cf21351b,
     type: 3}
   m_PrefabInstance: {fileID: 9067878875485178957}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2135250158406350070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360816069973593181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7c45f16f8bb1ac099dc80cbf5da714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8148975568631443740 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c4fcb505198e68fabb8e9d66cf21351b,
@@ -249,11 +265,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBeInteractedWith: 1
-  isOn: 1
-  toggleableObjects: []
-  switchMesh: {fileID: 5006895999760225760}
-  onRotation: 0
-  offRotation: -50
+  isOn: 0
+  toggleableObjects:
+  - {fileID: 0}
+  toggleOnEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2135250158406350070}
+        m_TargetAssemblyTypeName: TransformExtensions, Assembly-CSharp
+        m_MethodName: SetLocalRotationY
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  toggleOffEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2135250158406350070}
+        m_TargetAssemblyTypeName: TransformExtensions, Assembly-CSharp
+        m_MethodName: SetLocalRotationY
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -55
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &8817250608129862566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c4fcb505198e68fabb8e9d66cf21351b,

@@ -13,11 +13,11 @@ public class Part1GameStateManager : MonoBehaviour
     [SerializeField] private GameObject abarrition, endCutsceneTrigger;
 
     private void Start() {
-        startCutsceneLightswitch.toggleOnEvent += OnStartCutsceneLightSwitch;
+        startCutsceneLightswitch.toggleOnEvent.AddListener(OnStartCutsceneLightSwitch);
     }
 
     private void OnStartCutsceneLightSwitch() {
-        startCutsceneLightswitch.toggleOnEvent -= OnStartCutsceneLightSwitch;
+        startCutsceneLightswitch.toggleOnEvent.AddListener(OnStartCutsceneLightSwitch);
 
         HUD.Instance.RemoveText(0.2f);
         playerCamAnimator.Play("Game Intro After Lamp");

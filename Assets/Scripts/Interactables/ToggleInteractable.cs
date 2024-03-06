@@ -8,14 +8,11 @@ public class LightswitchInteractable : Interactable
     [SerializeField] private bool isOn;
 
     [SerializeField, SerializeReference] private GameObject[] toggleableObjects;
-    [Space(10f)]
-    [SerializeField] private Transform switchMesh;
-    [SerializeField] private float onRotation, offRotation;
 
     private List<IToggleable> toggleables = new();
 
-    public event UnityAction toggleOnEvent = delegate {};
-    public event UnityAction toggleOffEvent = delegate {};
+    public UnityEvent toggleOnEvent;
+    public UnityEvent toggleOffEvent;
 
     private void Start() {
         foreach (GameObject toggleableObject in toggleableObjects) {
@@ -29,9 +26,13 @@ public class LightswitchInteractable : Interactable
 
             toggleable.Toggle(isOn);
         }
-        
 
-        SetState();
+        if (isOn && toggleOnEvent != null) {
+            toggleOnEvent.Invoke();
+        }
+        else if (!isOn && toggleOffEvent != null) {
+            toggleOffEvent.Invoke();
+        }
     }
 
     public override void Interact() {
@@ -46,13 +47,7 @@ public class LightswitchInteractable : Interactable
         else {
             toggleOffEvent.Invoke();
         }
-
-        SetState();
     }
 
     public override void StopInteract() {}
-
-    private void SetState() {
-        switchMesh.localEulerAngles = new Vector3(switchMesh.localEulerAngles.x, isOn ? onRotation : offRotation, switchMesh.localEulerAngles.z);
-    }
 }
