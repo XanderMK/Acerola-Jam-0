@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class LightswitchInteractable : Interactable
+public class ToggleInteractable : Interactable
 {
     [SerializeField] private bool isOn;
 
@@ -36,6 +36,8 @@ public class LightswitchInteractable : Interactable
     }
 
     public override void Interact() {
+        if (!CanBeInteractedWith) return;
+
         isOn = !isOn;
 
         foreach (IToggleable toggleable in toggleables)

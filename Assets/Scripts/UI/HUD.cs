@@ -7,11 +7,12 @@ using DG.Tweening;
 public class HUD : MonoBehaviour
 {
     [SerializeField] private Image transitionImage;
-    [SerializeField] private float transitionImageFadeInTime, transitionImageFadeOutTime;
+    [SerializeField] private float transitionImageWaitTime, transitionImageFadeOutTime;
     [Space(10f)]
     [SerializeField] private GameObject crosshair;
     [Space(10f)]
     [SerializeField] private TMP_Text text;
+    [SerializeField] private CanvasGroup textGroup;
 
     private PlayerInteraction playerInteraction;
 
@@ -31,10 +32,10 @@ public class HUD : MonoBehaviour
     IEnumerator Start() {
         playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>();
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(transitionImageWaitTime);
 
         transitionImageInitialColor = transitionImage.color;
-        transitionImage.DOColor(Color.clear, transitionImageFadeOutTime);
+        TransitionOut(transitionImageFadeOutTime);
     }
 
     void FixedUpdate() {
@@ -42,44 +43,50 @@ public class HUD : MonoBehaviour
     }
 
     public void SetText(string newText, float fadeInTime = 0f, float stayTime = 4f, float fadeOutTime = 0f) {
-        StopAllCoroutines();
-        text.DOKill();
+        StopCoroutine("ISetText");
+        textGroup.DOKill();
 
         text.text = newText;
-        text.color = Color.clear;
+        textGroup.alpha = 0f;
 
         StartCoroutine(ISetText(fadeInTime, stayTime, fadeOutTime));
     }
 
+    public void SetText(string textData) {
+        string[] parameters = textData.Split(":::");
+
+        SetText(parameters[0], float.Parse(parameters[1]), float.Parse(parameters[2]), float.Parse(parameters[3]));
+    }
+
     public void SetTextUntilFurtherNotice(string newText, float fadeInTime = 0f) {
-        StopAllCoroutines();
+        StopCoroutine("ISetText");
 
         text.text = newText;
 
-        text.DOKill();
-        text.DOColor(Color.white, fadeInTime);
+        textGroup.DOKill();
+        textGroup.DOFade(1f, fadeInTime);
     }
 
     public void RemoveText(float fadeOutTime) {
-        StopAllCoroutines();
+        StopCoroutine("ISetText");
 
-        text.DOKill();
-        text.DOColor(Color.clear, fadeOutTime);
+        textGroup.DOKill();
+        textGroup.DOFade(0f, fadeOutTime);
     }
 
     private IEnumerator ISetText(float fadeInTime, float stayTime, float fadeOutTime) {
-        text.DOColor(Color.white, fadeInTime);
+        textGroup.DOFade(1f, fadeInTime);
         yield return new WaitForSeconds(fadeInTime + stayTime);
-        text.DOColor(Color.clear, fadeOutTime);
+        textGroup.DOFade(0f, fadeOutTime);
     }
 
-    public void TransitionIn() {
+    public void TransitionOut(float time) {
         transitionImage.DOKill();
-        transitionImage.DOColor(Color.clear, transitionImageFadeOutTime);
+        transitionImage.DOColor(Color.clear, time);
     }
 
-    public void TransitionOut() {
+    public void TransitionIn(float time) {
         transitionImage.DOKill();
-        transitionImage.DOColor(transitionImageInitialColor, transitionImageFadeOutTime);
+        transitionImage.DOColor(transitionImageInitialColor, time);
     }
 }
