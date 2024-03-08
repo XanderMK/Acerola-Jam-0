@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8992331522506312650}
   - component: {fileID: 5124940944983343367}
+  - component: {fileID: 7298383011011477631}
   - component: {fileID: 5591172587475374267}
+  - component: {fileID: 1805402122642640860}
   m_Layer: 0
   m_Name: Unopenable Door Container
   m_TagString: Interactable
@@ -47,11 +49,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBeInteractedWith: 1
-  textOnTryOpen: You don't need to go to the bathroom.
-  playAnimation: 0
+  textOnInteract: 
   fadeInTime: 0.5
   stayTime: 4
   fadeOutTime: 0.3
+--- !u!114 &7298383011011477631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7836201155281339739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b074e042cfe4e099a376237a446844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeInteractedWith: 1
+  interactEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1805402122642640860}
+        m_TargetAssemblyTypeName: AnimationExtensions, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Try Open Door
+          m_BoolArgument: 0
+        m_CallState: 2
+  stopInteractEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!111 &5591172587475374267
 Animation:
   m_ObjectHideFlags: 0
@@ -68,6 +100,18 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &1805402122642640860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7836201155281339739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca56eaad5365c66a9aec5b52e8010e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7892078778304731424
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +311,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesh
       objectReference: {fileID: 0}
+    - target: {fileID: 1216468509960519630, guid: e472c0b80ac99e2b69b2a85d317003a8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 90b570ed489a2f04b8e25c9832387a34, type: 2}
     - target: {fileID: 5136218105271050861, guid: e472c0b80ac99e2b69b2a85d317003a8,
         type: 3}
       propertyPath: m_LocalScale.x

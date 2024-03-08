@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,33 +11,27 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float maxInteractableDistance;
     [SerializeField] private LayerMask interactionMask;
     [Header("Interaction Handling")]
-    private GameObject currentlyHeldItem;
-    private Interactable currentlyInteractable;
-    private Interactable currentlyInteractedObject;
+    private Interactable[] currentlyInteractable;
+    private List<Interactable> currentlyInteractedObjects = new();
 
     public bool IsHoveringOverInteractable {
         get {
-            if (currentlyInteractable != null) {
-                return (currentlyInteractable.CanBeInteractedWith);
+            foreach (Interactable interactable in currentlyInteractable) {
+                if (interactable.CanBeInteractedWith)
+                    return true;
             }
+            
             return false;
         }
     }
 
-    private Rigidbody rb;
-
     private void OnEnable() {
         SetInputCallbacks();
+        currentlyInteractable = new Interactable[0];
     }
 
     private void OnDisable() {
         RemoveInputCallbacks();
-    }
-
-    private void Start() {
-        rb = GetComponent<Rigidbody>();
-
-        rb.centerOfMass = Vector3.zero;
     }
 
     private void FixedUpdate() {
@@ -54,27 +49,27 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     private void InteractSubscriber() {
-        if (currentlyInteractable != null) {
-            currentlyInteractable.Interact();
-            currentlyInteractedObject = currentlyInteractable;
+        foreach (Interactable interactable in currentlyInteractable) {
+            interactable.Interact();
+            currentlyInteractedObjects.Add(interactable);
         }
+        
     }
 
     private void StopInteractSubscriber() {
-        if (currentlyInteractedObject != null) {
-            currentlyInteractedObject.StopInteract();
-
-            currentlyInteractedObject = null;
+        foreach (Interactable interactable in currentlyInteractedObjects) {
+            interactable.StopInteract();
         }
+        currentlyInteractedObjects.Clear();
     }
 
-    private Interactable GetCurrentlyInteractable() {
+    private Interactable[] GetCurrentlyInteractable() {
         RaycastHit hit;
         if (Physics.Raycast(interactableCastTransform.position, interactableCastTransform.forward, out hit, maxInteractableDistance, interactionMask)) {
-            Interactable interactable = hit.transform.GetComponentInParent<Interactable>();
+            Interactable[] interactables = hit.transform.GetComponentsInParent<Interactable>();
 
-            return interactable;
+            return interactables;
         }
-        return null;
+        return new Interactable[0];
     }
 }
