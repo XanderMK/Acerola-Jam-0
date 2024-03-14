@@ -12182,16 +12182,16 @@ AnimationClip:
       - serializedVersion: 3
         time: 12
         value: {x: 73.054, y: 327.266, z: -31.588}
-        inSlope: {x: 25.488922, y: 66.58267, z: 5.9455185}
-        outSlope: {x: 25.488922, y: 66.58267, z: 5.9455185}
+        inSlope: {x: 25.488922, y: 92.8519, z: 5.9455185}
+        outSlope: {x: 25.488922, y: 92.8519, z: 5.9455185}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 18.5
-        value: {x: 96.7, y: 400, z: -84.8}
-        inSlope: {x: 3.6378455, y: 11.189848, z: -8.186462}
+        value: {x: 96.7, y: 741.5, z: -84.8}
+        inSlope: {x: 3.6378455, y: 63.72831, z: -8.186462}
         outSlope: {x: 3.6378455, y: 11.189848, z: -8.186462}
         tangentMode: 0
         weightedMode: 0
@@ -12341,25 +12341,16 @@ AnimationClip:
       - serializedVersion: 3
         time: 12
         value: {x: 0, y: -66.1, z: 0}
-        inSlope: {x: 0, y: -14.93372, z: 0}
-        outSlope: {x: 0, y: -14.93372, z: 0}
+        inSlope: {x: 0, y: -26.286379, z: 0}
+        outSlope: {x: 0, y: -26.286379, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 18.5
-        value: {x: 0, y: -150, z: 0}
-        inSlope: {x: 0, y: -45.099747, z: 0}
-        outSlope: {x: 0, y: -45.099747, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 18.516666
         value: {x: 0, y: -360, z: 0}
-        inSlope: {x: 0, y: 0, z: 0}
+        inSlope: {x: -0, y: -45.215385, z: -0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
@@ -13020,7 +13011,7 @@ AnimationClip:
         value: 96.7
         inSlope: 3.6378455
         outSlope: 3.6378455
-        tangentMode: 34
+        tangentMode: 5
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -13210,18 +13201,18 @@ AnimationClip:
       - serializedVersion: 3
         time: 12
         value: 327.266
-        inSlope: 66.58267
-        outSlope: 66.58267
+        inSlope: 92.8519
+        outSlope: 92.8519
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 18.5
-        value: 400
-        inSlope: 11.189848
+        value: 741.5
+        inSlope: 63.72831
         outSlope: 11.189848
-        tangentMode: 34
+        tangentMode: 5
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -13422,7 +13413,7 @@ AnimationClip:
         value: -84.8
         inSlope: -8.186462
         outSlope: -8.186462
-        tangentMode: 34
+        tangentMode: 5
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -13513,18 +13504,9 @@ AnimationClip:
       - serializedVersion: 3
         time: 18.5
         value: 0
-        inSlope: 0
+        inSlope: -0
         outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 18.516666
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        tangentMode: 5
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -13606,27 +13588,18 @@ AnimationClip:
       - serializedVersion: 3
         time: 12
         value: -66.1
-        inSlope: -14.93372
-        outSlope: -14.93372
+        inSlope: -26.286379
+        outSlope: -26.286379
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 18.5
-        value: -150
-        inSlope: -45.099747
-        outSlope: -45.099747
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 18.516666
         value: -360
-        inSlope: 0
+        inSlope: -45.215385
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 5
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -13717,18 +13690,9 @@ AnimationClip:
       - serializedVersion: 3
         time: 18.5
         value: 0
-        inSlope: 0
+        inSlope: -0
         outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 18.516666
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        tangentMode: 5
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -61558,39 +61522,120 @@ AnimationClip:
   - serializedVersion: 2
     curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 8.083333
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 11
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Player/Player Camera Anchor/Player Camera
+    attribute: localEulerAnglesBaked.z
+    path: Islands/Bridge 3 Anchor
     classID: 4
     script: {fileID: 0}
-    flags: 0
+    flags: 16
   - serializedVersion: 2
     curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 37.7
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 8.083333
+        value: 37.7
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 11
+        value: 37.7
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Player/Player Camera Anchor/Player Camera
+    attribute: localEulerAnglesBaked.y
+    path: Islands/Bridge 3 Anchor
     classID: 4
     script: {fileID: 0}
-    flags: 0
+    flags: 16
   - serializedVersion: 2
     curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 8.083333
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 11
+        value: 80
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Player/Player Camera Anchor/Player Camera
+    attribute: localEulerAnglesBaked.x
+    path: Islands/Bridge 3 Anchor
     classID: 4
     script: {fileID: 0}
-    flags: 0
+    flags: 16
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -61711,120 +61756,39 @@ AnimationClip:
   - serializedVersion: 2
     curve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 8.083333
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 11
-        value: 80
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: localEulerAnglesBaked.x
-    path: Islands/Bridge 3 Anchor
+    attribute: m_LocalEulerAngles.x
+    path: Player/Player Camera Anchor/Player Camera
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 37.7
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 8.083333
-        value: 37.7
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 11
-        value: 37.7
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: localEulerAnglesBaked.y
-    path: Islands/Bridge 3 Anchor
+    attribute: m_LocalEulerAngles.y
+    path: Player/Player Camera Anchor/Player Camera
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 8.083333
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 11
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: localEulerAnglesBaked.z
-    path: Islands/Bridge 3 Anchor
+    attribute: m_LocalEulerAngles.z
+    path: Player/Player Camera Anchor/Player Camera
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
@@ -61835,12 +61799,11 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.3
-    functionName: PlayAudioClip
+  - time: 0.5
+    functionName: FadeMusic
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 5b35db8a0ba1d68c7bac58751abffb7d,
-      type: 3}
-    floatParameter: 0
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 1.5
     intParameter: 0
     messageOptions: 0
   - time: 4.3
@@ -61850,10 +61813,19 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 8.833333
-    functionName: 
+  - time: 6.9333334
+    functionName: PlayAudioClip
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 8300000, guid: 377d9f0f4fbee68b3b43a827523c5550,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 8.516666
+    functionName: PlayAudioClip
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 77135802df2dd6597a5a0e14732e9e5c,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

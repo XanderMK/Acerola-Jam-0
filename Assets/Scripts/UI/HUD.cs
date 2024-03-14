@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class HUD : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class HUD : MonoBehaviour
     [SerializeField] private TMP_Text text;
     [SerializeField] private CanvasGroup textGroup;
     [Space(10f)]
+    [SerializeField] private GameObject settingsMenu;
     [SerializeField] private Toggle fullscreenToggle, vsyncToggle;
     [SerializeField] private Slider musicVolumeSlider, soundVolumeSlider;
     [SerializeField] private TMP_Text musicVolumeLabel, soundVolumeLabel;
@@ -42,15 +44,18 @@ public class HUD : MonoBehaviour
         playerMovement = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerMovement>();
         playerInteraction = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerInteraction>();
 
-        yield return new WaitForSeconds(transitionImageWaitTime);
-
         transitionImageInitialColor = transitionImage.color;
+
+        yield return new WaitForSeconds(transitionImageWaitTime);
+        
         TransitionOut(transitionImageFadeOutTime);
 
-        input.pauseEvent += OnPause;
+        if (playerMovement != null) {
+            input.pauseEvent += OnPause;
 
-        ApplyGraphicsSettings();
-        SetSettingsValues();
+            ApplyGraphicsSettings();
+            SetSettingsValues();
+        }
     }
 
     void FixedUpdate() {
@@ -110,12 +115,16 @@ public class HUD : MonoBehaviour
 
     public void TransitionOut(float time) {
         transitionImage.DOKill();
-        transitionImage.DOColor(Color.clear, time);
+        transitionImage.DOColor(Color.clear, time).OnComplete(
+            () => { transitionImage.raycastTarget = false; }
+        ).SetUpdate(true);
     }
 
     public void TransitionIn(float time) {
+        transitionImage.raycastTarget = true;
+
         transitionImage.DOKill();
-        transitionImage.DOColor(transitionImageInitialColor, time);
+        transitionImage.DOColor(transitionImageInitialColor, time).SetUpdate(true);
     }
 
     public void SetTextAfterTime(string data) {
@@ -131,7 +140,7 @@ public class HUD : MonoBehaviour
     }
 
     bool paused = false;
-    private void OnPause() {
+    public void OnPause() {
         if (!playerMovement.enabled && !paused) return;
 
         paused = !paused;
@@ -144,12 +153,30 @@ public class HUD : MonoBehaviour
         }
     }
 
-    private void Pause() {
+    public void Pause() {
         Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        settingsMenu.SetActive(true);
+
+        // Stop audio on pause
+        foreach (AudioSource source in FindObjectsOfType<AudioSource>()) {
+            source.pitch = 0f;
+        }
+
+        paused = true;
     }
 
-    private void Unpause() {
+    public void Unpause() {
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        settingsMenu.SetActive(false);
+
+        // Resume audio on unpause
+        foreach (AudioSource source in FindObjectsOfType<AudioSource>()) {
+            source.pitch = 1f;
+        }
+
+        paused = false;
     }
 
     private void SetSettingsValues() {
@@ -183,5 +210,16 @@ public class HUD : MonoBehaviour
 
         Screen.fullScreen = fullscreen;
         QualitySettings.vSyncCount = vsync ? 1 : 0;
+    }
+
+    public void ExitToMenu(float time) {
+        StartCoroutine(IExitToMenu(time));
+    }
+
+    private IEnumerator IExitToMenu(float time) {
+        TransitionIn(time);
+        yield return new WaitForSecondsRealtime(time + 0.5f);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Main Menu");
     }
 }

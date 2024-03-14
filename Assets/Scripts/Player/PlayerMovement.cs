@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float acceleration;
+    [SerializeField] private bool canLook = true;
     [Space(10f)]
     [SerializeField] private Transform groundCastPoint;
     [SerializeField] private float maxGroundCastDistance;
@@ -93,6 +94,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Update() {
+        if (!canLook) return;
+
         lookRotationY += lookInput.x * mouseSensitivity * Time.deltaTime;
         lookRotationX -= lookInput.y * mouseSensitivity * Time.deltaTime;
 

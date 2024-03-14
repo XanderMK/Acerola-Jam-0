@@ -6,13 +6,13 @@ using UnityEngine;
 public class Music : MonoBehaviour
 {
     private AudioSource audioSource;
-    private float defaultVolume;
+    public float baseVolume;
     void Start() {
         audioSource = GetComponent<AudioSource>();
-        defaultVolume = audioSource.volume;
+        baseVolume = audioSource.volume;
     }
 
     void Update() {
-        audioSource.volume = defaultVolume * PlayerPrefs.GetFloat("Music Volume", 1);
+        audioSource.volume = baseVolume * PlayerPrefs.GetFloat("Music Volume", 1);
     }
 }

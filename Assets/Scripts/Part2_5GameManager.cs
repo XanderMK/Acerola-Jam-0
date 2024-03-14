@@ -8,6 +8,8 @@ public class Part2_5GameManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> chains;
     [SerializeField] private List<ParticleSystem> chainBreakParticles;
+    [SerializeField] private AudioSource chainBreakAudioSource;
+    [SerializeField] private AudioClip lockBreak, chainBreak;
     [Space(10f)]
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private Rigidbody playerRb;
@@ -51,6 +53,7 @@ public class Part2_5GameManager : MonoBehaviour
                 break;
             default:
                 lockAnim.Play();
+                chainBreakAudioSource.PlayDelayed(1.5f);
                 door.SetLocked(false);
                 StartCoroutine(DisplayTextEvents(lockBreakTextEvents));
                 break;
@@ -64,6 +67,8 @@ public class Part2_5GameManager : MonoBehaviour
         camera.eulerAngles = chainBreakCamRotation;
 
         yield return new WaitForSeconds(timeBeforeBreakChain);
+
+        chainBreakAudioSource.PlayOneShot(chainBreak);
 
         chains[numOfChainsBroken-1].SetActive(false);
         chainBreakParticles[numOfChainsBroken-1].Play();

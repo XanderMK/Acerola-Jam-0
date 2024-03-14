@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 [RequireComponent(typeof(Animation))]
 public class AnimationExtensions : MonoBehaviour
@@ -10,6 +11,7 @@ public class AnimationExtensions : MonoBehaviour
     [SerializeField] private Rigidbody playerRb;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private Music music;
 
     [SerializeField] private Part4GameManager part4GameManager;
 
@@ -29,6 +31,10 @@ public class AnimationExtensions : MonoBehaviour
 
     public void PlayMusicClip(AudioClip clip) {
         musicSource.PlayOneShot(clip);
+    }
+
+    public void FadeMusic(float time) {
+        DOTween.To(() => music.baseVolume, (x) => music.baseVolume = x, 0f, time);
     }
 
     public void PlayAudioClip(AudioClip clip) {

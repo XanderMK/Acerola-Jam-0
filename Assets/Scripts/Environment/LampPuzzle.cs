@@ -19,8 +19,8 @@ public class LampPuzzle : MonoBehaviour
 
         timesInteracted++;
 
-        if (timesInteracted == 3) {
-            HUD.Instance.SetText("These lamps seem off...", 0.3f, 3, 0.2f);
+        if (timesInteracted == 2) {
+            HUD.Instance.SetText("These lamps seem odd...", 0.3f, 3, 0.2f);
             voiceSource.PlayOneShot(interactionClip);
         }
 

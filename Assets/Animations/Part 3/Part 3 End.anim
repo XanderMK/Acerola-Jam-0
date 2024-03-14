@@ -2340,18 +2340,10 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.2666667
-    functionName: PlayMusicClip
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 5b35db8a0ba1d68c7bac58751abffb7d,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 2.1166666
+  - time: 1.3
     functionName: PlayAudioClip
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 1d4498ac185af6916b369b08e1cb6be3,
+    objectReferenceParameter: {fileID: 8300000, guid: 72bd849c2d78f89128d7bd313a041a71,
       type: 3}
     floatParameter: 0
     intParameter: 0
@@ -2377,25 +2369,9 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 15.566667
-    functionName: PlayAudioClip
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 5b35db8a0ba1d68c7bac58751abffb7d,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 20.266666
     functionName: PlayAudioClip
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 5b35db8a0ba1d68c7bac58751abffb7d,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 20.266666
-    functionName: DisplayText
-    data: I've missed him for so long.:::0.3:::3:::0.3
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -2404,14 +2380,6 @@ AnimationClip:
     functionName: DisplayText
     data: But I can't keep living like this.:::0.3:::3:::0.3
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 25.116667
-    functionName: PlayAudioClip
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 5b35db8a0ba1d68c7bac58751abffb7d,
-      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

@@ -38,8 +38,6 @@ public class PlayerAnimationPart1 : MonoBehaviour
     }
 
     public void FadeTransitionImage(float time) {
-        HUD.Instance.RemoveText(time);
-
         HUD.Instance.TransitionIn(time);
     }
 

@@ -388,13 +388,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.5
-    functionName: DisplayTextUntilFurtherNotice
-    data: What is that!?:::0.15
+    functionName: DisplayText
+    data: What is that?!:::0.1:::1.5:::0.1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 6.5
+  - time: 0.5
+    functionName: PlayVoiceClip
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 3903fb891458b6df380c4953a4a3d282,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 6
     functionName: FadeTransitionImage
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -403,16 +411,8 @@ AnimationClip:
     messageOptions: 0
   - time: 8.5
     functionName: DisplayText
-    data: <i><color=#AAAAAA>I don't want to think about it...</color></i>:::0.4:::3:::0.4
+    data: <i><color=#AAAAAA>Why do I keep thinking about it?</color></i>:::0.4:::3:::0.4
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 8.5
-    functionName: PlayVoiceClip
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 5b35db8a0ba1d68c7bac58751abffb7d,
-      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

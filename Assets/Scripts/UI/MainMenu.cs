@@ -5,12 +5,11 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
-using UnityEditor.PackageManager.UI;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private new Transform camera;
-    [SerializeField] private AudioSource menuMusic;
+    [SerializeField] private Music menuMusic;
     [SerializeField] private float startYPosition, startTransitionTime;
     [SerializeField] private float optionsYPosition, optionsXRotation, optionsTransitionTime;
     [Space(10f)]
@@ -43,8 +42,8 @@ public class MainMenu : MonoBehaviour
         camera.DOMoveY(startYPosition, startTransitionTime).SetEase(Ease.InCubic).OnComplete( () => { 
             SceneManager.LoadScene(2);
         } );
-        transitionImage.DOColor(transitionImageInitialColor, transitionImageFadeInTime+2.5f).SetEase(Ease.InCubic);
-        menuMusic.DOFade(0f, startTransitionTime);
+        transitionImage.DOColor(transitionImageInitialColor, startTransitionTime-1f).SetEase(Ease.InCubic);
+        DOTween.To(() => menuMusic.baseVolume, (x) => menuMusic.baseVolume = x, 0f, startTransitionTime);
     }
 
     public void OnOptions() {
