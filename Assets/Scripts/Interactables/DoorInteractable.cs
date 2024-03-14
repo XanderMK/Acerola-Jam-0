@@ -15,17 +15,21 @@ public class DoorInteractable : Interactable
     [SerializeField] private bool isLocked;
     [SerializeField] private string textOnOpenWhenLocked;
     [SerializeField] private float fadeInTime, stayTime, fadeOutTime;
+    [SerializeField] private AudioClip voiceClip;
 
     public UnityEvent openEvent;
     public UnityEvent closeEvent;
 
     private Rigidbody rb;
     private Animation anim;
+    private AudioSource playerVoiceAudio;
+    
     private bool playerInside = false;
 
     private void Start() {
         rb = GetComponentInChildren<Rigidbody>();
         anim = GetComponent<Animation>();
+        playerVoiceAudio = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<AudioSource>();
     }
 
     public override void Interact() {
@@ -34,6 +38,10 @@ public class DoorInteractable : Interactable
         if (isLocked) {
             HUD.Instance.SetText(textOnOpenWhenLocked, fadeInTime, stayTime, fadeOutTime);
             anim.Play();
+            if (playerVoiceAudio != null && voiceClip != null && (!playerVoiceAudio.isPlaying || playerVoiceAudio.clip != voiceClip)) {
+                playerVoiceAudio.clip = voiceClip;
+                playerVoiceAudio.Play();
+            }
             return;
         }
 

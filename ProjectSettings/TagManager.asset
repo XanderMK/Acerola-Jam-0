@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Interactable
   - HUD
+  - Good End
+  - Bad End
+  - Part 2 Cutscene Trigger
+  - Death Plane
+  - Part 3 End
   layers:
   - Default
   - TransparentFX

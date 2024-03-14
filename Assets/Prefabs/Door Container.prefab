@@ -111,14 +111,20 @@ MonoBehaviour:
   CanBeInteractedWith: 1
   door: {fileID: 3910861615753846081}
   closedRotation: 0
-  openRotation: -110
+  openRotation: 130
   isOpen: 0
-  doorMoveTime: 0.25
+  doorMoveTime: 0.325
   isLocked: 0
   textOnOpenWhenLocked: The door is locked.
   fadeInTime: 0.3
   stayTime: 2
   fadeOutTime: 0.2
+  openEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  closeEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!111 &1697922332962728149
 Animation:
   m_ObjectHideFlags: 0
@@ -186,8 +192,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 1, z: 0.8}
-  m_Center: {x: 0.4, y: 0.98, z: 0.4}
+  m_Size: {x: 1.7946465, y: 1, z: 0.82075405}
+  m_Center: {x: 0.07864797, y: 0.98, z: -0.45}
 --- !u!1 &9038048557811517386
 GameObject:
   m_ObjectHideFlags: 0

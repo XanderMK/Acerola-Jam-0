@@ -7,6 +7,7 @@ public class PlayerAnimationPart1 : MonoBehaviour
 {
     [SerializeField] private Part1GameStateManager gameStateManager;
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private AudioSource playerVoiceSource;
 
     public void EnablePlayerMovement() {
         gameStateManager.EnablePlayerMovement();
@@ -44,5 +45,10 @@ public class PlayerAnimationPart1 : MonoBehaviour
 
     public void GoToScene(string scene) {
         SceneManager.LoadScene(scene);
+    }
+
+    public void PlayVoiceClip(AudioClip clip) {
+        playerVoiceSource.clip = clip;
+        playerVoiceSource.Play();
     }
 }

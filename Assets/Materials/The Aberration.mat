@@ -36,8 +36,8 @@ Material:
     - _Vertex_Shift_Scale_Multiplier: 0.25
     - _Vertex_Shift_Speed_Multiplier: 9.36
     m_Colors:
-    - _Primary_Color: {r: 0.3679245, g: 0.18569775, b: 0.18569775, a: 0}
-    - _Secondary_Color: {r: 0.16037738, g: 0.055224285, b: 0.055224285, a: 0}
+    - _Primary_Color: {r: 0.764151, g: 0.3126429, b: 0.2775451, a: 0}
+    - _Secondary_Color: {r: 0.35849032, g: 0.0016909974, b: 0.0016909974, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &650062339060629067
 MonoBehaviour:

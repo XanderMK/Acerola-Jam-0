@@ -1,0 +1,106 @@
+{
+    "name": "Any Button",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "af5915f0-af4d-41d8-917a-e6b135a86ede",
+            "actions": [
+                {
+                    "name": "Any",
+                    "type": "Button",
+                    "id": "42621ad1-e417-4789-a0ac-ad6c4292c61c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "608d51e4-b2b7-4c4a-ac44-2704fb7e59e4",
+                    "path": "*/{Submit}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
+                    "action": "Any",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "961f0286-a5f8-4f2d-ad6c-edd4a2e0b0ad",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Any",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard&Mouse",
+            "bindingGroup": "Keyboard&Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Touch",
+            "bindingGroup": "Touch",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Joystick",
+            "bindingGroup": "Joystick",
+            "devices": [
+                {
+                    "devicePath": "<Joystick>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "XR",
+            "bindingGroup": "XR",
+            "devices": [
+                {
+                    "devicePath": "<XRController>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -17,33 +18,44 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCastPoint;
     [SerializeField] private float maxGroundCastDistance;
     [SerializeField] private LayerMask groundCastMask;
+    [SerializeField] private float maxGroundAngle;
     [Space(20f)]
     [SerializeField] private float mouseSensitivity;
+    [SerializeField] private float cameraWalkingFOV, cameraRunningFOV;
+    [SerializeField] private float cameraFOVChangeTime;
 
     // Local Components
     private Rigidbody rb;
     private CapsuleCollider col;
-    private new Transform camera;
+    private Transform cameraTransform;
+    private new Camera camera;
 
     // Local Variables
     private Vector2 moveInput;
     private Vector2 lookInput;
     private float currentMoveSpeed;
-    private float lookRotationX, lookRotationY;
+    [SerializeField] private float lookRotationX, lookRotationY;
 
     private void OnEnable() {
         SetInputCallbacks();
+
+        moveInput = Vector2.zero;
+        lookInput = Vector2.zero;
     }
 
     private void OnDisable() {
         RemoveInputCallbacks();
+
+        camera.DOKill();
+        camera.DOFieldOfView(cameraWalkingFOV, cameraFOVChangeTime).SetEase(Ease.OutCubic);
     }
 
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
         col = GetComponentInChildren<CapsuleCollider>();
-        camera = Camera.main.transform.parent;
+        cameraTransform = Camera.main.transform.parent;
+        camera = Camera.main;
 
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -67,7 +79,13 @@ public class PlayerMovement : MonoBehaviour
             rb.useGravity = true;
 
         // Move along the ground
-        moveDirection = Vector3.ProjectOnPlane(moveDirection, groundData.hitInfo.normal);
+        Vector3 groundNormal = groundData.hitInfo.normal;
+        if (Mathf.Abs(Vector3.Dot(Vector3.up, groundNormal)) * 90f < maxGroundAngle)  {
+            groundNormal = Vector3.up;
+            rb.AddForce(Vector3.down * 25f, ForceMode.Acceleration);
+        }
+
+        moveDirection = Vector3.ProjectOnPlane(moveDirection, groundNormal);
         if (rbVelocityY < 0f)
             moveDirection.y += rbVelocityY;
 
@@ -81,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         lookRotationX = Mathf.Clamp(lookRotationX, -80f, 80f);
 
         transform.localEulerAngles = Vector3.up * lookRotationY;
-        camera.localEulerAngles = Vector3.right * lookRotationX;
+        cameraTransform.localEulerAngles = Vector3.right * lookRotationX;
     }
 
     private struct GroundData {
@@ -129,9 +147,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartRunSubscriber() {
         currentMoveSpeed = runSpeed;
+
+        camera.DOKill();
+        camera.DOFieldOfView(cameraRunningFOV, cameraFOVChangeTime).SetEase(Ease.OutCubic);
     }
 
     private void StopRunSubscriber() {
         currentMoveSpeed = walkSpeed;
+
+        camera.DOKill();
+        camera.DOFieldOfView(cameraWalkingFOV, cameraFOVChangeTime).SetEase(Ease.OutCubic);
     }
 }

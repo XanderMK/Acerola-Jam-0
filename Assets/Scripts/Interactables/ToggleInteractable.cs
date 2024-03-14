@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ToggleInteractable : Interactable
 {
-    [SerializeField] private bool isOn;
+    public bool isOn;
 
     [SerializeField, SerializeReference] private GameObject[] toggleableObjects;
 
@@ -38,6 +38,12 @@ public class ToggleInteractable : Interactable
     public override void Interact() {
         if (!CanBeInteractedWith) return;
 
+        Toggle();
+    }
+
+    public override void StopInteract() {}
+
+    public void Toggle() {
         isOn = !isOn;
 
         foreach (IToggleable toggleable in toggleables)
@@ -50,6 +56,4 @@ public class ToggleInteractable : Interactable
             toggleOffEvent.Invoke();
         }
     }
-
-    public override void StopInteract() {}
 }

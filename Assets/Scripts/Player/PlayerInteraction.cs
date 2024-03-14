@@ -50,8 +50,10 @@ public class PlayerInteraction : MonoBehaviour
 
     private void InteractSubscriber() {
         foreach (Interactable interactable in currentlyInteractable) {
-            interactable.Interact();
-            currentlyInteractedObjects.Add(interactable);
+            if (interactable.CanBeInteractedWith) {
+                interactable.Interact();
+                currentlyInteractedObjects.Add(interactable);
+            }
         }
         
     }

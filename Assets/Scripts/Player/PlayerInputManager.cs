@@ -15,6 +15,8 @@ public class PlayerInputManager : ScriptableObject, PlayerInput.IPlayerActions
     public event UnityAction interactEvent = delegate {};
     public event UnityAction stopInteractEvent = delegate {};
 
+    public event UnityAction pauseEvent = delegate {};
+
     private PlayerInput playerInput;
 
     private void OnEnable() {
@@ -71,6 +73,12 @@ public class PlayerInputManager : ScriptableObject, PlayerInput.IPlayerActions
         }
         else if (context.canceled) {
             stopInteractEvent.Invoke();
+        }
+    }
+
+    public void OnPause(InputAction.CallbackContext context) {
+        if (context.performed) {
+            pauseEvent.Invoke();
         }
     }
 

@@ -106,7 +106,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 4.5
+    m_StopTime: 14.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -394,14 +394,29 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3
+  - time: 6.5
     functionName: FadeTransitionImage
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.5
+  - time: 8.5
+    functionName: DisplayText
+    data: <i><color=#AAAAAA>I don't want to think about it...</color></i>:::0.4:::3:::0.4
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 8.5
+    functionName: PlayVoiceClip
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 5b35db8a0ba1d68c7bac58751abffb7d,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 14.5
     functionName: GoToScene
     data: Part 2
     objectReferenceParameter: {fileID: 0}
