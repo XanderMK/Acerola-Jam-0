@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class PlayerAnimationPart2_5 : MonoBehaviour
 {
@@ -16,10 +17,16 @@ public class PlayerAnimationPart2_5 : MonoBehaviour
     private Rigidbody rb;
     private Animator anim;
 
-    private void Start() {
+    private IEnumerator Start() {
         playerMovement = GetComponent<PlayerMovement>();
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+
+        AudioListener.volume = 0f;
+
+        yield return new WaitForSeconds(1.5f);
+
+        FadeAudioIn(0.5f);
     }
 
     private void OnTriggerEnter(Collider col) {
@@ -61,5 +68,13 @@ public class PlayerAnimationPart2_5 : MonoBehaviour
 
     public void DisableAbarrition() {
         aberration.SetActive(false);
+    }
+
+    public void FadeAudioIn(float time) {
+        DOTween.To(() => AudioListener.volume, (x) => AudioListener.volume = x, 1, time);
+    }
+
+    public void FadeAudioOut(float time) {
+        DOTween.To(() => AudioListener.volume, (x) => AudioListener.volume = x, 0, time);
     }
 }

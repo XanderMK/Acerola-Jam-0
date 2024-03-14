@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         currentMoveSpeed = walkSpeed;
+        mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity", 20f);
         lookRotationY = transform.localEulerAngles.y;
     }
 
@@ -160,5 +161,9 @@ public class PlayerMovement : MonoBehaviour
 
         camera.DOKill();
         camera.DOFieldOfView(cameraWalkingFOV, cameraFOVChangeTime).SetEase(Ease.OutCubic);
+    }
+
+    public void SetMouseSensitivity(float value) {
+        mouseSensitivity = value;
     }
 }

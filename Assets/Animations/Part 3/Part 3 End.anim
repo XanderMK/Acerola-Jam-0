@@ -2369,8 +2369,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 20.266666
-    functionName: PlayAudioClip
+  - time: 16.083334
+    functionName: 
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

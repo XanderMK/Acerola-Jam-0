@@ -416,6 +416,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 9
+    functionName: FadeAudioOut
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 1
+    intParameter: 0
+    messageOptions: 0
   - time: 14.5
     functionName: GoToScene
     data: Part 2

@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class PlayerAnimationPart1 : MonoBehaviour
 {
     [SerializeField] private Part1GameStateManager gameStateManager;
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private AudioSource playerVoiceSource;
+
+    private void Awake() {
+        AudioListener.volume = 0f;
+    }
 
     public void EnablePlayerMovement() {
         gameStateManager.EnablePlayerMovement();
@@ -48,5 +53,13 @@ public class PlayerAnimationPart1 : MonoBehaviour
     public void PlayVoiceClip(AudioClip clip) {
         playerVoiceSource.clip = clip;
         playerVoiceSource.Play();
+    }
+
+    public void FadeAudioIn(float time) {
+        DOTween.To(() => AudioListener.volume, (x) => AudioListener.volume = x, 1, time);
+    }
+
+    public void FadeAudioOut(float time) {
+        DOTween.To(() => AudioListener.volume, (x) => AudioListener.volume = x, 0, time);
     }
 }

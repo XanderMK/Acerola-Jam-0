@@ -19,8 +19,8 @@ public class HUD : MonoBehaviour
     [Space(10f)]
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private Toggle fullscreenToggle, vsyncToggle;
-    [SerializeField] private Slider musicVolumeSlider, soundVolumeSlider;
-    [SerializeField] private TMP_Text musicVolumeLabel, soundVolumeLabel;
+    [SerializeField] private Slider musicVolumeSlider, soundVolumeSlider, sensitivitySlider;
+    [SerializeField] private TMP_Text musicVolumeLabel, soundVolumeLabel, sensitivityLabel;
 
     private PlayerMovement playerMovement;
     private PlayerInteraction playerInteraction;
@@ -184,6 +184,11 @@ public class HUD : MonoBehaviour
         vsyncToggle.isOn = PlayerPrefs.GetInt("VSync") == 1 ? true : false;
         musicVolumeSlider.value = PlayerPrefs.GetFloat("Music Volume", 1);
         soundVolumeSlider.value = PlayerPrefs.GetFloat("Sound Volume", 1);
+        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 20f);
+
+        musicVolumeLabel.text = "Music Volume: " + Mathf.Round(musicVolumeSlider.value * 100) + "%";
+        soundVolumeLabel.text = "Sound Volume: " + Mathf.Round(soundVolumeSlider.value * 100) + "%";
+        sensitivityLabel.text = "Sensitivity: " + Mathf.Round(sensitivitySlider.value);
     }
 
     public void ChangeFullscreen() {
@@ -202,6 +207,13 @@ public class HUD : MonoBehaviour
     public void ChangeSoundVolume() {
         PlayerPrefs.SetFloat("Sound Volume", soundVolumeSlider.value);
         soundVolumeLabel.text = "Sound Volume: " + Mathf.Round(soundVolumeSlider.value * 100) + "%";
+    }
+
+    public void ChangeSensitivity() {
+        PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.value);
+        sensitivityLabel.text = "Sensitivity: " + Mathf.Round(sensitivitySlider.value);
+
+        playerMovement.SetMouseSensitivity(sensitivitySlider.value);
     }
 
     public void ApplyGraphicsSettings() {

@@ -61858,6 +61858,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 25.016666
+    functionName: FadeAudioOut
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 1
+    intParameter: 0
+    messageOptions: 0
   - time: 30
     functionName: GoToScene
     data: Part 2.5

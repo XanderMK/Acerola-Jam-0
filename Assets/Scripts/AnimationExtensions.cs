@@ -19,6 +19,8 @@ public class AnimationExtensions : MonoBehaviour
 
     private void Awake() {
         animation = GetComponent<Animation>();
+
+        AudioListener.volume = 0f;
     }
 
     public void Play(string anim) {
@@ -64,5 +66,13 @@ public class AnimationExtensions : MonoBehaviour
 
     public void FadeAbarritionColor(float time) {
         part4GameManager.FadeAbarritionColor(time);
+    }
+
+    public void FadeAudioIn(float time) {
+        DOTween.To(() => AudioListener.volume, (x) => AudioListener.volume = x, 1, time);
+    }
+
+    public void FadeAudioOut(float time) {
+        DOTween.To(() => AudioListener.volume, (x) => AudioListener.volume = x, 0, time);
     }
 }
