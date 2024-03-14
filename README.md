@@ -8,4 +8,4 @@ Tools used include:
 - Audacity
 - FL Studio
 
-Everything was hand drawn and modeled. All sound effects were produced by me. Fonts "Roboto" and "Walkway" are public domain and free use, respectively, obtained from 1001 Free Fonts (https://www.1001freefonts.com/). :)
+Everything was hand drawn and modeled. All sound and music was produced by me. Fonts "Roboto" and "Walkway" are public domain and free use, respectively, obtained from 1001 Free Fonts (https://www.1001freefonts.com/). :)
